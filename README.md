@@ -1,2 +1,2 @@
-# Calculator_Project
+# Calculator Project
 Software Development Calculator Project
