@@ -2,5 +2,5 @@
 
 
 void tokenizer(char buffer[100]){
-    printf(buffer);
+    printf("Seperating Tokens\n");
 }

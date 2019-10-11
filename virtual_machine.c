@@ -1,6 +1,6 @@
 #include <stdio.h>
 
 
-void printTest(){
-    printf("Test\n");
+void virtual_machine(){
+    printf("Running Virtual machine\n");
 }
