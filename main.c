@@ -8,7 +8,7 @@
 
 int main(){
     printf("Running Calculator\n");
-    tokenizer("test");
+    tokenizer();
 	infix2postfix();
 	code_generator();
 	virtual_machine();
