@@ -14,7 +14,8 @@ int main(){
 	virtual_machine();
 
 	// wait so program does not close automatically
-	gets();
+    char str[10];
+    fgets(str, sizeof(str),stdin);
 
     return 0;
 }
