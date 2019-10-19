@@ -7,15 +7,12 @@
 
 
 int main(){
-    printf("Running Calculator\n");
-    tokenizer();
+  printf("Running Calculator\n");
+  tokenizer();
 	infix2postfix();
 	code_generator();
 	virtual_machine();
 
 	// wait so program does not close automatically
-    char str[10];
-    fgets(str, sizeof(str),stdin);
-
     return 0;
 }
