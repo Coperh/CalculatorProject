@@ -5,6 +5,7 @@
 
 char buffer[100];
 const char valid[] = "+-*/() ";
+const char outputFile[] = "Tokens.txt";
 
 
 /*
@@ -52,7 +53,7 @@ bool CharacterValidator(char character) {
 */
 bool Scanner(char input[100]) {
   // open output file
-  FILE *ouput = fopen("Tokens.txt","w");
+  FILE *ouput = fopen(outputFile,"w");
 
   int i = 0; // intialize index
   // while charcter is not the null pointer or newline
