@@ -8,11 +8,14 @@
 
 int main(){
   printf("Running Calculator\n");
-  tokenizer();
+
+  if (tokenizer() < 0){
+    printf("Could not tokenize\n");
+    return -1;
+  }
 	infix2postfix();
 	code_generator();
 	virtual_machine();
 
-	// wait so program does not close automatically
-    return 0;
+  return 0;
 }
