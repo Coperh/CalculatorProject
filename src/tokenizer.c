@@ -4,7 +4,7 @@
 
 
 char buffer[100];
-const char valid[] = "+-*/() ";
+const char valid[] = "+-*/()";
 const char outputFile[] = "Tokens.txt";
 
 

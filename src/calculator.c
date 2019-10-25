@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "tokenizer.h"
-#include "infix2postfix.h"
-#include "code_generator.h"
-#include "virtual_machine.h"
+#include "./headers/tokenizer.h"
+#include "./headers/infix2postfix.h"
+#include "./headers/code_generator.h"
+#include "./headers/virtual_machine.h"
 
 
 
