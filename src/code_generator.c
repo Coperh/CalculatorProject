@@ -5,13 +5,11 @@ void code_generator() {
 }
 
 
-
 /*
 
 NOT COMPLETED YET. UPLOADING SO IT CAN BE WORKED ON AT SCHOOL COMPS
 
 */
-
 
 
 #include <stdlib.h>
