@@ -12,62 +12,53 @@ NOT COMPLETED YET. UPLOADING SO IT CAN BE WORKED ON AT SCHOOL COMPS
 */
 
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
 
-#define MAXCHAR 100
+char op[5],arg1[5],arg2[5],result[5];
 
-char buffer[MAXCHAR];
-const char outputFile[] = "Instruction.txt";
+void main(){
+  
+  FILE *fp1,*fp2;
+ 
+  fp1=fopen("postfix.txt","r");
+  fp2=fopen("instructions.txt","w");
+  
+  while(!feof(fp1)){
 
-//read a file 
-//if token is separated by whitespace, use swtich statement
-//print string and token
-//print onto new .txt file 
+    fscanf(fp1,"%s%s%s%s",op,arg1,arg2,result);
 
-int main(){
-
-    char operator; 
-    int c;
-
-    FILE *fpostfix;
-    fpostfix = fopen("postfix.txt", "r");
-
-    while(!feof(fpostfix)){
-        fgets(buffer, 100, fpostfix);
-        puts(buffer);
+    if(strcmp(op,"+") == 0){
+      fprintf(fp2,"LOADINT %s",arg1);
+      fprintf(fp2,"\nADD %s",arg2);
+      fprintf(fp2,"\nMOV %s",result);
     }
-
-    if()
-
-
-    //Operators
-    operator = fgetc(fpostfix);
-    switch (operator){
-        case '+':
-            printf("ADD \n");
-            break;
-
-        case '-':
-            printf("SUB \n");
-            break;
-
-        case '*':
-            printf("MUL \n");
-            break;
-        
-        case '/':
-            printf("DIV \n");
-            break;
-
-        default:
-           printf("Error! Operation Not Valid \n");
+    
+    if(strcmp(op,"*")==0){
+      fprintf(fp2,"\nLOADINT %s",arg1);
+      fprintf(fp2,"\nMUL %s",arg2);
+      fprintf(fp2,"\nMOV %s",result);
     }
-
-    fclose(fpostfix);
-
-    //FILE *ouput = fopen(outputFile,"w");
-
-    return 0;
+    
+    if(strcmp(op,"-")==0){
+      fprintf(fp2,"\nLOADINT %s",arg1);
+      fprintf(fp2,"\nSUB %s",arg2);
+      fprintf(fp2,"\nMOV %s",result);
+    }
+    
+    if(strcmp(op,"/")==0){
+      fprintf(fp2,"\nLOADINT %s",arg1);
+      fprintf(fp2,"\nDIV %s",arg2);
+      fprintf(fp2,"\nMOV %s",result);
+    }
+    
+    if(strcmp(op,"=")==0){
+      fprintf(fp2,"\nMOV %s",arg1);
+      fprintf(fp2,"\nMOV %s",result);
+    }
+  }
+    fclose(fp1);
+    fclose(fp2);
+    getch();
 }
