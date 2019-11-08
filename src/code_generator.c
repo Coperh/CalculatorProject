@@ -16,10 +16,10 @@ NOT COMPLETED YET. UPLOADING SO IT CAN BE WORKED ON AT SCHOOL COMPS
 #include<conio.h>
 #include<string.h>
 
-char op[5],arg1[5],arg2[5],result[5];
 
 void main(){
   
+  char operator;
   FILE *fp1,*fp2;
  
   fp1=fopen("postfix.txt","r");
@@ -27,35 +27,22 @@ void main(){
   
   while(!feof(fp1)){
 
-    fscanf(fp1,"%s%s%s%s",op,arg1,arg2,result);
+    switch(operator){
+      case '+':
+        fprintf(fp2, "ADD");
+        break;
+      
+      case '-':
+        fprintf(fp2, "SUB");
+        break;
 
-    if(strcmp(op,"+") == 0){
-      fprintf(fp2,"LOADINT %s",arg1);
-      fprintf(fp2,"\nADD %s",arg2);
-      fprintf(fp2,"\nMOV %s",result);
-    }
-    
-    if(strcmp(op,"*")==0){
-      fprintf(fp2,"\nLOADINT %s",arg1);
-      fprintf(fp2,"\nMUL %s",arg2);
-      fprintf(fp2,"\nMOV %s",result);
-    }
-    
-    if(strcmp(op,"-")==0){
-      fprintf(fp2,"\nLOADINT %s",arg1);
-      fprintf(fp2,"\nSUB %s",arg2);
-      fprintf(fp2,"\nMOV %s",result);
-    }
-    
-    if(strcmp(op,"/")==0){
-      fprintf(fp2,"\nLOADINT %s",arg1);
-      fprintf(fp2,"\nDIV %s",arg2);
-      fprintf(fp2,"\nMOV %s",result);
-    }
-    
-    if(strcmp(op,"=")==0){
-      fprintf(fp2,"\nMOV %s",arg1);
-      fprintf(fp2,"\nMOV %s",result);
+      case '*':
+        fprintf(fp2, "MUL");
+        break;
+
+      case '/':
+        fprintf(fp2, "DIV");
+        break;
     }
   }
     fclose(fp1);
