@@ -14,65 +14,68 @@ void code_generator() {
 
 #include <stdio.h>
 #include <string.h>
-#include <assert.h>
 
-char readchar(FILE *myfile) {
-	char c = getc(myfile);
-	return c;
-}
-
-void writechar(FILE *newfile, char c) {
-	fputc(c, newfile);
-}
+#define BUFFER_SIZE 100
 
 
-int main(int argc, char **argv) {
+int main( int argc, char** argv ){
 
-	FILE *input, *output;
-	input = fopen("postfix.txt", "r"); 
-  	output = fopen("instructions.txt", "w");
+    const char *delimiter_characters = " ";
+    const char *filename = "postfix.txt";
 
-	char c = readchar(input);
-
-	char* token = strtok(&c, " "); 
+    FILE *input_file, *output_file;
 	
-	while (token != NULL) { 
-        
-		int integer;
-		if(token = &integer){
-			fprintf(output, "\nLOADINT %c", token);
-		}
-		
-		char operator;
-		if(token = &operator){
-			switch(operator){
-				case '+':
-					fprintf(output,"\nADD");
-					break;
-				
-				case '-':
-					fprintf(output, "\nSUB");
-					break;
+	input_file = fopen(filename, "r");
+	output_file = fopen("instructions.txt", "w");
+   
+    char buffer[ BUFFER_SIZE ];
+    char *last_token;
 
-				case '*':
-					fprintf(output,"\nMUL");
-					break;
+    if(input_file == NULL){
+        fprintf( stderr, "Unable to open file %s\n", filename );
+    }
+	else{
 
-				case '/':
-					fprintf(output, "\nDIV");
-					break;
-			}
-		}
-		
-        token = strtok(NULL, " "); 
-		writechar(output, c);
-    } 
+        // Read each line into the buffer
+        while(fgets(buffer, BUFFER_SIZE, input_file) != NULL ){
+            // Write the line to stdout
+            //fputs( buffer, stdout );
+
+            // Gets each token as a string and prints it
+            last_token = strtok( buffer, delimiter_characters );
+            while( last_token != NULL ){
+                printf("%s\n", last_token );
+                last_token = strtok( NULL, delimiter_characters );
 /*
-	for(int i = 0; i <= 9; i++){
-		if(c = i){
+                char operator;
+                if(last_token = &operator){
+                    switch(operator){
+                    case '+':
+                        fprintf(output_file,"\nADD");
+                        break;
+                    
+                    case '-':
+                        fprintf(output_file, "\nSUB");
+                        break;
 
-		}
-	}
+                    case '*':
+                        fprintf(output_file,"\nMUL");
+                        break;
+
+                    case '/':
+                        fprintf(output_file, "\nDIV");
+                        break;
+                    }
+                }
 */
-	return 0;
+            }
+
+            if( ferror(input_file) ){
+                perror( "The following error occurred" );
+            }
+
+            fclose( input_file );
+        }
+    }
+    return 0;
 }
