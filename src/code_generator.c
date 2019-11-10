@@ -7,12 +7,13 @@ void code_generator() {
 
 /*
 
-NOT COMPLETED YET. UPLOADING SO IT CAN BE WORKED ON AT SCHOOL COMPS
+-------------------- NOT COMPLETED YET. --------------------
 
 */
 
 
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
 
 char readchar(FILE *myfile) {
@@ -31,27 +32,47 @@ int main(int argc, char **argv) {
 	input = fopen("postfix.txt", "r"); 
   	output = fopen("instructions.txt", "w");
 
-	char operator;
-	switch(operator){
-		case '+':
-			fprintf(output,"ADD");
-			break;
-		
-		case '-':
-			fprintf(output, "SUB");
-			break;
-
-		case '*':
-			fprintf(output,"MUL");
-			break;
-
-		case '/':
-			fprintf(output, "DIV");
-			break;
-	}
-
-
 	char c = readchar(input);
-	writechar(output, c);
+
+	char* token = strtok(&c, " "); 
+	
+	while (token != NULL) { 
+        
+		int integer;
+		if(token = &integer){
+			fprintf(output, "\nLOADINT %c", token);
+		}
+		
+		char operator;
+		if(token = &operator){
+			switch(operator){
+				case '+':
+					fprintf(output,"\nADD");
+					break;
+				
+				case '-':
+					fprintf(output, "\nSUB");
+					break;
+
+				case '*':
+					fprintf(output,"\nMUL");
+					break;
+
+				case '/':
+					fprintf(output, "\nDIV");
+					break;
+			}
+		}
+		
+        token = strtok(NULL, " "); 
+		writechar(output, c);
+    } 
+/*
+	for(int i = 0; i <= 9; i++){
+		if(c = i){
+
+		}
+	}
+*/
 	return 0;
 }
