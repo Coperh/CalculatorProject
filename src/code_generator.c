@@ -12,40 +12,46 @@ NOT COMPLETED YET. UPLOADING SO IT CAN BE WORKED ON AT SCHOOL COMPS
 */
 
 
-#include<stdio.h>
-#include<conio.h>
-#include<string.h>
+#include <stdio.h>
+#include <assert.h>
+
+char readchar(FILE *myfile) {
+	char c = getc(myfile);
+	return c;
+}
+
+void writechar(FILE *newfile, char c) {
+	fputc(c, newfile);
+}
 
 
-void main(){
-  
-  char operator;
-  FILE *fp1,*fp2;
- 
-  fp1=fopen("postfix.txt","r");
-  fp2=fopen("instructions.txt","w");
-  
-  while(!feof(fp1)){
+int main(int argc, char **argv) {
 
-    switch(operator){
-      case '+':
-        fprintf(fp2, "ADD");
-        break;
-      
-      case '-':
-        fprintf(fp2, "SUB");
-        break;
+	FILE *input, *output;
+	input = fopen("postfix.txt", "r"); 
+  	output = fopen("instructions.txt", "w");
 
-      case '*':
-        fprintf(fp2, "MUL");
-        break;
+	char operator;
+	switch(operator){
+		case '+':
+			fprintf(output,"ADD");
+			break;
+		
+		case '-':
+			fprintf(output, "SUB");
+			break;
 
-      case '/':
-        fprintf(fp2, "DIV");
-        break;
-    }
-  }
-    fclose(fp1);
-    fclose(fp2);
-    getch();
+		case '*':
+			fprintf(output,"MUL");
+			break;
+
+		case '/':
+			fprintf(output, "DIV");
+			break;
+	}
+
+
+	char c = readchar(input);
+	writechar(output, c);
+	return 0;
 }
