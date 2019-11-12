@@ -6,9 +6,7 @@ void code_generator() {
 
 
 /*
-
 -------------------- NOT COMPLETED YET. --------------------
-
 */
 
 
@@ -24,10 +22,10 @@ int main( int argc, char** argv ){
     const char *filename = "postfix.txt";
 
     FILE *input_file, *output_file;
-	
+
 	input_file = fopen(filename, "r");
 	output_file = fopen("instructions.txt", "w");
-   
+
     char buffer[ BUFFER_SIZE ];
     char *last_token;
 
@@ -45,30 +43,29 @@ int main( int argc, char** argv ){
             last_token = strtok( buffer, delimiter_characters );
             while( last_token != NULL ){
                 printf("%s\n", last_token );
-                last_token = strtok( NULL, delimiter_characters );
-/*
-                char operator;
-                if(last_token = &operator){
-                    switch(operator){
+
+
+                switch(last_token[0]){
                     case '+':
-                        fprintf(output_file,"\nADD");
+                        fprintf(output_file,"ADD\n");
                         break;
-                    
+
                     case '-':
-                        fprintf(output_file, "\nSUB");
+                        fprintf(output_file, "SUB\n");
                         break;
-
                     case '*':
-                        fprintf(output_file,"\nMUL");
+                        fprintf(output_file,"MUL\n");
                         break;
-
                     case '/':
-                        fprintf(output_file, "\nDIV");
+                        fprintf(output_file, "DIV\n");
                         break;
+										default:
+											fprintf(output_file, "LOADNUM %s\n", last_token);
+
                     }
+								last_token = strtok( NULL, delimiter_characters );
                 }
-*/
-            }
+
 
             if( ferror(input_file) ){
                 perror( "The following error occurred" );

@@ -3,5 +3,5 @@
 /Release
 /Debug
 *.exe
-Tokens.txt
+*.txt
 *.o
