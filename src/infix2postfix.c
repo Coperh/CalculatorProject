@@ -50,7 +50,7 @@ Main function to take input from a txt file and
 convert it from infix to postfix notation,
 writing the output to another txt file.
 */
-main()
+void infix2postfix()
 {
     char exp[20];
     char *e, x;
