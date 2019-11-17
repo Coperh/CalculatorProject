@@ -36,6 +36,8 @@ Determines the precedence of an operator
 */
 int precedence(char x)
 {
+    if (x == ' ')
+	return -1;
     if(x == '(')
         return 0;
     if(x == '+' || x == '-')
@@ -62,6 +64,8 @@ main()
 		{	
 			if(isdigit(*e))
 				fprintf(fWrite, "%c", *e);
+			else if(*e == ' ')
+				continue;
 			else if(*e == '(')
 				push(*e);
 			else if(*e == ')')
