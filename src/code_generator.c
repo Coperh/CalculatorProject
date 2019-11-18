@@ -4,11 +4,6 @@ void code_generator() {
 	printf("Generating Code\n");
 }
 
-
-/*
--------------------- NOT COMPLETED YET. --------------------
-*/
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -26,12 +21,12 @@ bool NumberValidator(char *number) {
     if (number[i] == '.') {
       decimalCount++;
     }
-    if (decimalCount > 1) {
+    if (decimalCount >= 1) {
     return true;
     }
     i++;
   }
-  return true;
+  return false;
 }
 int main( int argc, char** argv ){
 
