@@ -12,6 +12,8 @@ void code_generator() {
 
 #define BUFFER_SIZE 100
 
+//Checks for float
+//This part from tokenizer.c
 bool NumberValidator(char *number) {
     unsigned char decimalCount = 0;
     int i = 0;
@@ -21,17 +23,18 @@ bool NumberValidator(char *number) {
     if (number[i] == '.') {
       decimalCount++;
     }
-    if (decimalCount >= 1) {
+    if (decimalCount >= 1) { //if there are 1 or more dots, it's a float
     return true;
     }
     i++;
   }
   return false;
 }
-int main( int argc, char** argv ){
+
+int codegenerator( int argc, char** argv ){
 
     const char *delimiter_characters = " ";
-    const char *filename = "postfix.txt";
+    const char *filename = "output.txt";
 
     FILE *input_file, *output_file;
 
@@ -72,21 +75,19 @@ int main( int argc, char** argv ){
                         fprintf(output_file, "DIV\n");
                         break;
 
-		    default:
+		            default:
                         if(NumberValidator(last_token)){
                             fprintf(output_file, "LOADFLT %s\n", last_token);
                         }
                         else
-			    fprintf(output_file, "LOADINT %s\n", last_token);
+			                fprintf(output_file, "LOADINT %s\n", last_token);
                 }
 				
                 last_token = strtok(NULL, delimiter_characters );
             }
-
             if(ferror(input_file) ){
                 perror( "The following error occurred" );
             }
-
             fclose( input_file );
         }
     }
