@@ -9,13 +9,30 @@ void code_generator() {
 -------------------- NOT COMPLETED YET. --------------------
 */
 
-
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 #define BUFFER_SIZE 100
 
+bool NumberValidator(char *number) {
+    unsigned char decimalCount = 0;
+    int i = 0;
 
+  while (number[i] != '\0') {
+    // if decimal count
+    if (number[i] == '.') {
+      decimalCount++;
+    }
+    if (decimalCount > 1) {
+    return true;
+    }
+    i++;
+  }
+  return true;
+}
 int main( int argc, char** argv ){
 
     const char *delimiter_characters = " ";
@@ -36,14 +53,12 @@ int main( int argc, char** argv ){
 
         // Read each line into the buffer
         while(fgets(buffer, BUFFER_SIZE, input_file) != NULL ){
-            // Write the line to stdout
-            //fputs( buffer, stdout );
 
             // Gets each token as a string and prints it
             last_token = strtok( buffer, delimiter_characters );
             while( last_token != NULL ){
-                printf("%s\n", last_token );
 
+                printf("%s\n", last_token );
 
                 switch(last_token[0]){
                     case '+':
@@ -53,21 +68,27 @@ int main( int argc, char** argv ){
                     case '-':
                         fprintf(output_file, "SUB\n");
                         break;
+
                     case '*':
                         fprintf(output_file,"MUL\n");
                         break;
+
                     case '/':
                         fprintf(output_file, "DIV\n");
                         break;
-										default:
-											fprintf(output_file, "LOADNUM %s\n", last_token);
 
-                    }
-								last_token = strtok( NULL, delimiter_characters );
+		    default:
+                        if(NumberValidator(last_token)){
+                            fprintf(output_file, "LOADFLT %s\n", last_token);
+                        }
+                        else
+			    fprintf(output_file, "LOADINT %s\n", last_token);
                 }
+				
+                last_token = strtok(NULL, delimiter_characters );
+            }
 
-
-            if( ferror(input_file) ){
+            if(ferror(input_file) ){
                 perror( "The following error occurred" );
             }
 
