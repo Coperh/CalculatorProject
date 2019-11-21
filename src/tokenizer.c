@@ -54,8 +54,15 @@ bool CharacterValidator(char character) {
   Scans input for indivual token numbers and characters
 */
 bool Scanner(char input[100]) {
+    
+    if(input[0] == '\n' || input[0] == '\0'){
+        printf("No input\n");
+        return false;
+      
+    }
   // open output file
-  FILE *ouput = fopen(outputFile,"w");
+  FILE *output = fopen(outputFile,"w");
+  // clear file for empty input
 
   int i = 0; // intialize index
   // while charcter is not the null pointer or newline
@@ -100,7 +107,7 @@ bool Scanner(char input[100]) {
         return false;
       }
       // output to file
-      fprintf(ouput,"%s ",number );
+      fprintf(output,"%s ",number );
       // get next index
       i = i + len-1;
     }
@@ -114,10 +121,11 @@ bool Scanner(char input[100]) {
         return false;
       }
       // output to file
-      fprintf(ouput,"%c ",c );
+      fprintf(output,"%c ",c );
       i++;
     }
   }
+  fclose(output);
   return true;
 }
 
