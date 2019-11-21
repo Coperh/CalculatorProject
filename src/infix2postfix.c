@@ -4,14 +4,14 @@
 2. If the scanned character is an operand, output it.
 3. Else,
 precedence, order of operation: 1: brackets 2: exponents 3: * and / 4: + and -
-…..3.1 If the precedence of the scanned operator is greater than the precedence 
+…..3.1 If the precedence of the scanned operator is greater than the precedence
 	   of the operator in the stack(or the stack is empty or the stack contains a ‘(‘ ), push it.
-…..3.2 Else, Pop all the operators from the stack which are greater than or equal to 
-	   in precedence than that of the scanned operator. After doing that Push the scanned 
-	   operator to the stack. (If you encounter parenthesis while popping then stop there and 
+…..3.2 Else, Pop all the operators from the stack which are greater than or equal to
+	   in precedence than that of the scanned operator. After doing that Push the scanned
+	   operator to the stack. (If you encounter parenthesis while popping then stop there and
 	   push the scanned operator in the stack.)
 4. If the scanned character is an ‘(‘, push it to the stack.
-5. If the scanned character is an ‘)’, pop the stack and and output it until a ‘(‘ is 
+5. If the scanned character is an ‘)’, pop the stack and and output it until a ‘(‘ is
    encountered, and discard both the parenthesis.
 6. Repeat steps 2-6 until infix expression is scanned.
 7. Print the output
@@ -21,6 +21,7 @@ precedence, order of operation: 1: brackets 2: exponents 3: * and / 4: + and -
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 char stack[20];
 int top = -1;
@@ -55,18 +56,18 @@ Main function to take input from a txt file and
 convert it from infix to postfix notation,
 writing the output to another txt file.
 */
-main()
+int infix2postfix()
 {
     char exp[20];
     char *e, x;
 	FILE *fPointer;
 	FILE *fWrite;
-	fPointer = fopen("input.txt", "r"); //pointer to read from input file
-	fWrite = fopen("postfix.txt", "w"); //pointer to write to output file
+	fPointer = fopen("Tokens.txt", "r"); //pointer to read from input file
+	fWrite = fopen("Postfix.txt", "w"); //pointer to write to output file
 	while (fgets(exp, 20, fPointer) != NULL) //scan line token by token until null pointer
 		e = exp;
 		while(*e != '\0')
-		{	
+		{
 			if(isdigit(*e))
 				fprintf(fWrite, "%c ", *e);
 			else if(*e == '(')
@@ -89,7 +90,7 @@ main()
 		fprintf(fWrite,"%c ",pop());
     }
     fclose(fPointer);
+    fclose(fWrite);
     return 0;
-    
-}
 
+}

@@ -1,8 +1,5 @@
 #include <stdio.h>
 
-void code_generator() {
-	printf("Generating Code\n");
-}
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -14,7 +11,7 @@ void code_generator() {
 
 //Checks for float
 //This part from tokenizer.c
-bool NumberValidator(char *number) {
+bool NumberDetector(char *number) {
     unsigned char decimalCount = 0;
     int i = 0;
 
@@ -31,15 +28,15 @@ bool NumberValidator(char *number) {
   return false;
 }
 
-int codegenerator( int argc, char** argv ){
+int code_generator( int argc, char** argv ){
 
     const char *delimiter_characters = " ";
-    const char *filename = "output.txt";
+    const char *filename = "Postfix.txt";
 
     FILE *input_file, *output_file;
 
 	input_file = fopen(filename, "r");
-	output_file = fopen("instructions.txt", "w");
+	output_file = fopen("Instructions.txt", "w");
 
     char buffer[ BUFFER_SIZE ];
     char *last_token;
@@ -56,7 +53,6 @@ int codegenerator( int argc, char** argv ){
             last_token = strtok( buffer, delimiter_characters );
             while( last_token != NULL ){
 
-                printf("%s\n", last_token );
 
                 switch(last_token[0]){
                     case '+':
@@ -75,21 +71,26 @@ int codegenerator( int argc, char** argv ){
                         fprintf(output_file, "DIV\n");
                         break;
 
-		            default:
-                        if(NumberValidator(last_token)){
+		               default:
+												if (last_token[0] == '\n'){
+													break;
+												}
+                        if(NumberDetector(last_token)){
                             fprintf(output_file, "LOADFLT %s\n", last_token);
                         }
                         else
 			                fprintf(output_file, "LOADINT %s\n", last_token);
                 }
-				
+                printf("%s\n", last_token );
                 last_token = strtok(NULL, delimiter_characters );
             }
             if(ferror(input_file) ){
                 perror( "The following error occurred" );
             }
-            fclose( input_file );
+
         }
     }
+		fclose( input_file );
+		fclose( output_file );
     return 0;
 }

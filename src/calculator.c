@@ -9,10 +9,7 @@
 int main(){
   printf("Running Calculator\n");
 
-  if (tokenizer() < 0){
-    printf("Could not tokenize\n");
-    return -1;
-  }
+  //tokenizer();
 	infix2postfix();
 	code_generator();
 	virtual_machine();

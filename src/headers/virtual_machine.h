@@ -1,7 +1,7 @@
-#ifndef VIRTUAL_MACHINE_h
-#define VIRTUAL_MACHINE_h
+#ifndef VIRTUAL_MACHINE_H
+#define VIRTUAL_MACHINE_H
 
-void virtual_machine();
+int virtual_machine();
 
 
 #endif // VIRTUAL_MACHINE_h

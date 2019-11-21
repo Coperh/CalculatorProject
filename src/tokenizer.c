@@ -94,7 +94,7 @@ bool Scanner(char input[100]) {
       }
       // if the number is not valid
       if (!NumberValidator(number)){
-        printf("Invalid Number: \033[0;31m%s\n\033[0m", number);
+        printf("Invalid Number: %s \n", number);
         return false;
       }
       // output to file
@@ -108,7 +108,7 @@ bool Scanner(char input[100]) {
     else {
       // if chracter not valid
       if( !CharacterValidator(c)){
-        printf("Invalid Character: \033[0;31m%c\n\033[0m", c);
+        printf("Invalid Character: %c\n", c);
         return false;
       }
       // output to file

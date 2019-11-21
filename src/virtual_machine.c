@@ -5,66 +5,72 @@
 #define BUFFER_SIZE 100
 #define STACK_SIZE 100
 
-double stack[STACK_SIZE];
-int top = -1;
+double dstack[STACK_SIZE];
+int dtop = -1;
 char flag = 0;
 
-void push(double x)
+void dpush(double x)
 {
-	stack[++top] = x;
+	dstack[++dtop] = x;
 }
 
-double pop()
+double dpop()
 {
-	if (top == -1) {
+	if (dtop == -1) {
 		flag = 1;
 		return 0;
 	}
 	else {
 		flag = 0;
-		return stack[top--];
+		return dstack[dtop--];
 	}
-}	
+}
 
 int stack_execute(int command) {
-	double num1 = pop();
-	double num2 = pop();
+	double num1 = dpop();
 	if (flag == 1)
 		return -1;
+	double num2 = dpop();
+	// if num2 is not available, add 1 back to stack
+	if (flag == 1){
+		dpush(num1);
+		return -1;}
 
 	switch (command) {
 	// add
 	case 0:
-		push(num1 + num2);
+		dpush(num2 + num1);
 		break;
 	// subtract
 	case 1:
-		push(num1 - num2);
+		dpush(num2 - num1);
 		break;
 	// multiply
 	case 2:
-		push(num1 * num2);
+		dpush(num2 * num1);
 		break;
 	// divide
 	case 3:
-		push(num1 / num2);
+		dpush(num2 / num1);
 		break;
 	}
 	return 0;
 }
 
 int stack_add(double number) {
-	if (top >= STACK_SIZE - 1)
+
+	if (dtop >= STACK_SIZE - 1)
 		return -1;
-	push(number);
+
+	dpush(number);
 	return 0;
 }
-void virtual_machine() {
+int virtual_machine() {
 	// open file
 
 		//int instr = ...
 	const char* delimiter_characters = " ";
-	const char* filename = "instructions.txt";
+	const char* filename = "Instructions.txt";
 
 	FILE* input_file;
 
@@ -77,29 +83,37 @@ void virtual_machine() {
 		printf("No input file.");
 	}
 	else {
-		
+
 		while (fgets(buffer, BUFFER_SIZE, input_file) != NULL) {
 			// read a line
 			//printf("%s\n", buffer);
 			// execute it
 			// findn out the instruction
 			token = strtok(buffer, delimiter_characters);
-
+			int cm = -1;
 			if (strcmp(token, "ADD\n")==0) {
 				printf("ADD\n");
-				stack_execute(0);
+				cm = 0;
 			}
 			else if (strcmp(token, "SUB\n") == 0) {
 				printf("SUB\n");
-				stack_execute(1);
+				cm = 1;
 			}
 			else if (strcmp(token, "MUL\n") == 0) {
 				printf("MUL\n");
-				stack_execute(2);
+				cm = 2;
 			}
 			else if (strcmp(token, "DIV\n") == 0) {
 				printf("DIV\n");
-				stack_execute(3);
+				cm = 3;
+			}
+
+			if (cm > -1){
+				if (stack_execute(cm) < 0){
+					printf("Not enough numbers on stack\n");
+					return(-1);
+				}
+
 			}
 			else if (strcmp(token, "LOADINT") == 0) {
 				int number = atoi(strtok(NULL, delimiter_characters));
@@ -110,19 +124,20 @@ void virtual_machine() {
 				double number = strtod(strtok(NULL, delimiter_characters), NULL);
 				printf("LOADFLOAT %f\n", number);
 				stack_add(number);
-
 			}
 			else {
 				printf("Invalid Command\n");
+				return(-1);
 			}
 
 		}
 	}
-}
+	fclose(input_file);
+	if(dtop > 0){
+		printf("Too many items on stack.\n");
+		return(-1);
+	}
+	printf("ans: %f", dstack[0]);
 
-int main(int argc, char** argv) {
-	
-	virtual_machine();
-	printf("ans: %f", pop());
 	return 0;
 }
