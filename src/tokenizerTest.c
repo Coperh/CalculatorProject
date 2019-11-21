@@ -22,12 +22,12 @@ TESTS{
         ok(NumberValidator(validInts[i]), "%s is a valid integer", validInts[i]);
     }
     // valid floats
-    char *validFloats[] = {"1.23","3.0","123.456",".75","."};
+    char *validFloats[] = {"1.23","3.0","123.456",".75"};
     for (int i = 0; i < sizeof(validFloats)/sizeof(validFloats[0]);i++){
         ok(NumberValidator(validFloats[i]), "%s is a valid float", validFloats[i]);
     }
     // invalid float
-    char *invalidFloats[] = {"1.2.3","3.0.","123..456",".75."};
+    char *invalidFloats[] = {"1.2.3","3.0.","123..456",".75.","."};
     for (int i = 0; i < sizeof(invalidFloats)/sizeof(invalidFloats[0]);i++){
         ok(!NumberValidator(invalidFloats[i]), "%s is not a valid float", invalidFloats[i]);
     }

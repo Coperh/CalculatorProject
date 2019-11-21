@@ -28,6 +28,8 @@ bool NumberValidator(char *number) {
     }
     i++;
   }
+  if(decimalCount >=  1 && i <= 2)
+      return false;
   return true;
 }
 
