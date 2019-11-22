@@ -9,10 +9,12 @@
 int main(){
   printf("Running Calculator\n");
 
-  //tokenizer();
-	infix2postfix();
-	code_generator();
-	virtual_machine();
+  if(tokenizer() < 0){
+      printf("boop");
+      return -1;}
+  infix2postfix();
+  code_generator();
+  virtual_machine();
 
   return 0;
 }

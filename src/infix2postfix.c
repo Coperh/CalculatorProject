@@ -21,6 +21,7 @@ precedence, order of operation: 1: brackets 2: exponents 3: * and / 4: + and -
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 char stack[20];
 int top = -1;
 void push(char x)
@@ -57,8 +58,8 @@ int infix2postfix()
     char *e, x;
 	FILE *fPointer;
 	FILE *fWrite;
-	fPointer = fopen("input.txt", "r"); //pointer to read from input file
-	fWrite = fopen("postfix.txt", "w"); //pointer to write to output file
+	fPointer = fopen("Tokens.txt", "r"); //pointer to read from input file
+	fWrite = fopen("Postfix.txt", "w"); //pointer to write to output file
 	while (fgets(exp, 20, fPointer) != NULL) //scan line token by token until null pointer
 		e = exp;
 		while(*e != '\0')
@@ -92,6 +93,7 @@ int infix2postfix()
 		fprintf(fWrite,"%c ",pop());
     }
     fclose(fPointer);
+    fclose(fWrite);
     return 0;
     
 }
