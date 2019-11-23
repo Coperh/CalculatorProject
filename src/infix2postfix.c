@@ -21,14 +21,13 @@ precedence, order of operation: 1: brackets 2: exponents 3: * and / 4: + and -
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
 char stack[20];
 int top = -1;
-void push(char x)
+void push(char x) //push a token to the stack
 {
     stack[++top] = x;
 }
-char pop()
+char pop() //returns the token at the top of the stack
 {
     if(top == -1)
         return -1;
@@ -56,44 +55,43 @@ int infix2postfix()
 {
     char exp[20];
     char *e, x;
-	FILE *fPointer;
-	FILE *fWrite;
+	FILE *fPointer; //file pointer for input txt file
+	FILE *fWrite; //file pointer for output txt file
 	fPointer = fopen("Tokens.txt", "r"); //pointer to read from input file
 	fWrite = fopen("Postfix.txt", "w"); //pointer to write to output file
 	while (fgets(exp, 20, fPointer) != NULL) //scan line token by token until null pointer
 		e = exp;
 		while(*e != '\0')
 		{	
-			if(isspace(*e))
+			if(isspace(*e)) //ignore spaces, do not push to stack
 				;
-			else if(isdigit(*e) && isdigit(*(e+1)))
+			else if((isdigit(*e) || *e == '.') && (isdigit(*(e+1)) || *(e+1) == '.')) //allow for > single digit numbers
 			{
 				fprintf(fWrite, "%c", *e);
 				
 			}
-			else if(isdigit(*e))
+			else if(isdigit(*e) || *e == '.') //allow for '.', floating point numbers
 				fprintf(fWrite, "%c ", *e);
-			else if(*e == '(')
+			else if(*e == '(') //opening bracket immediately pushed to stack
 				push(*e);
-			else if(*e == ')')
+			else if(*e == ')') //correctly format the operands that come before closing bracket
 			{
 				while((x = pop()) != '(')
 					fprintf(fWrite,"%c ", x);
 			}
-			else
+			else //compare the precedence of current token and token on top of the stack
 			{
 				while(precedence(stack[top]) >= precedence(*e))
 					fprintf(fWrite,"%c ",pop());
 				push(*e);
 			}
-			e++;
+			e++; //move the pointer
     }
-    while(top != -1)
+    while(top != -1) //pop remaining tokens off the stack
     {
 		fprintf(fWrite,"%c ",pop());
     }
     fclose(fPointer);
-    fclose(fWrite);
     return 0;
     
 }
