@@ -63,7 +63,7 @@ int infix2postfix()
 		e = exp;
 		while(*e != '\0')
 		{	
-			if(isspace(*e) //ignore spaces, do not push to stack
+			if(isspace(*e)) //ignore spaces, do not push to stack
 				;
 			else if((isdigit(*e) || *e == '.') && (isdigit(*(e+1)) || *(e+1) == '.')) //allow for > single digit numbers
 			{
