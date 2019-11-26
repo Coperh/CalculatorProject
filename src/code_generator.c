@@ -19,14 +19,14 @@ int NumberDetector(char *number) {
     // if decimal count
     if (number[i] == '.') 
       decimalCount++;
-   else if( !isdigit(number[i]))
-       return -1;
-      i++;
-}
+    else if( !isdigit(number[i]))
+        return -1;
+    i++;
+    }
     
-   if (decimalCount >= 1) //if there are 1 or more dots, it's a float=
-      return 0;
-   return 1;
+    if (decimalCount >= 1) //if there are 1 or more dots, it's a float=
+        return 0;
+    return 1;
 }
 
 
