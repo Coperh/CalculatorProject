@@ -2,7 +2,7 @@
 #define CODE_GENERATOR_H
 #include <stdbool.h>
 
-void code_generator();
-bool NumberDetector(char *number);
+int code_generator();
+int NumberDetector(char *number);
 
 #endif // CODE_GENERATOR_H
