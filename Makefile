@@ -40,7 +40,7 @@ codegenTest.t: code_generator.o
 	gcc -o codegenTest.t code_generator.o ./src/codegenTest.c
 
 vmTest.t: virtual_machine.o
-	gcc -o vmTest.t virtual_machine.o ./src/vmTest.c
+	gcc -o vmTest.t virtual_machine.o ./src/virtual_machineTest.c
 	
 calculatorTest.t: tokenizer.o infix2postfix.o code_generator.o virtual_machine.o
 	gcc -o calculatorTest.t ./src/calculatorTest.c tokenizer.o infix2postfix.o code_generator.o virtual_machine.o

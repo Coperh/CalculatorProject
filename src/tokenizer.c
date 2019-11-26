@@ -1,7 +1,15 @@
+/*
+ * Tokenizer
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
+ * 
+ * Takes an input and serperates it into its indivual tokens.
+ * Ensures the characters are valid operators or parentheses.
+ * Validates floating point numbers.
+ */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <ctype.h>
-
 
 char buffer[100];
 const char valid[] = "+-*/()";
@@ -36,6 +44,7 @@ bool NumberValidator(char *number) {
 
 /*
   Tests if a chracter input is valid or not
+  character: the character being tested
 */
 bool CharacterValidator(char character) {
   // Check if character is in the list of valid characters
@@ -52,6 +61,7 @@ bool CharacterValidator(char character) {
 
 /*
   Scans input for indivual token numbers and characters
+  input: the input that will be tokenized
 */
 bool Scanner(char input[100]) {
     
@@ -131,7 +141,8 @@ bool Scanner(char input[100]) {
 
 
 /*
-  Tokenizer main program
+  Runs the tokenizer by getting an input and using
+  the scanner
 */
 int tokenizer() {
   // get input for calcuator
