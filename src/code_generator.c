@@ -11,34 +11,24 @@
 
 //Checks for float
 //This part from tokenizer.c
-bool NumberDetector(char *number) {
+int NumberDetector(char *number) {
     unsigned char decimalCount = 0;
     int i = 0;
 
   while (number[i] != '\0') {
     // if decimal count
-    if (number[i] == '.') {
+    if (number[i] == '.') 
       decimalCount++;
-    }
-    if (decimalCount >= 1) { //if there are 1 or more dots, it's a float
-    return true;
-    }
-    i++;
-  }
-  return false;
+   else if( !isdigit(number[i]))
+       return -1;
+      i++;
+}
+    
+   if (decimalCount >= 1) //if there are 1 or more dots, it's a float=
+      return 0;
+   return 1;
 }
 
-bool OperatorValidator(char character) {
-  // Check if character is in the list of valid characters
-  for (int i = 0; i < sizeof(valid); i++) {
-    // if strings are the same (returns 0)
-    if (character == valid[i]) {
-      return true;
-    }
-  }
-  // if character not in valid list
-  return false;
-}
 
 int code_generator( int argc, char** argv ){
 
@@ -55,6 +45,7 @@ int code_generator( int argc, char** argv ){
 
     if(input_file == NULL){
         fprintf( stderr, "Unable to open file %s\n", filename );
+        return -1;
     }
 	else{
 
@@ -83,15 +74,20 @@ int code_generator( int argc, char** argv ){
                         fprintf(output_file, "DIV\n");
                         break;
 
-		               default:
-												if (last_token[0] == '\n'){
-													break;
-												}
-                        if(NumberDetector(last_token)){
-                            fprintf(output_file, "LOADFLOAT %s\n", last_token);
+                    default:
+                        if (last_token[0] == '\n'){
+                            break;
                         }
-                        else
-			                fprintf(output_file, "LOADINT %s\n", last_token);
+                        if(NumberDetector(last_token) == 0)
+                            fprintf(output_file, "LOADFLOAT %s\n", last_token);
+                        
+                        else if(NumberDetector(last_token) == 1)
+                            fprintf(output_file, "LOADINT %s\n", last_token);
+                        else{
+                            printf("Invlaid input\n");
+                            return -1;
+                            
+                        }
                 }
                 last_token = strtok(NULL, delimiter_characters );
             }
