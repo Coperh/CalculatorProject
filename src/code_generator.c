@@ -42,8 +42,7 @@ int code_generator( int argc, char** argv ){
         fprintf( stderr, "Unable to open file %s\n", filename ); // If the file can't be opened, it prints out an error statement
         return -1;
     }
-	else{
-
+    else{
         // Read each line into the buffer
         while(fgets(buffer, BUFFER_SIZE, input_file) != NULL ){
 
@@ -72,14 +71,15 @@ int code_generator( int argc, char** argv ){
                         if (last_token[0] == '\n'){ 
                             break; // If there is a new line break out of switch 
                         }
-                        if(NumberDetector(last_token) == 0)
+                        if(NumberDetector(last_token) == 0){
                             fprintf(output_file, "LOADFLOAT %s\n", last_token); // Print out the instructions for a float token
-                        else if(NumberDetector(last_token) == 1)
+			}
+                        else if(NumberDetector(last_token) == 1){
                             fprintf(output_file, "LOADINT %s\n", last_token); // Prints out the instructions for an int token
+			}
                         else{
                             printf("Invlaid input\n"); // If there is an invalid input, return -1
                             return -1;
-                            
                         }
                 }
                 last_token = strtok(NULL, delimiter_characters );
@@ -87,7 +87,6 @@ int code_generator( int argc, char** argv ){
             if(ferror(input_file) ){
                 perror( "The following error occurred" ); 
             }
-
         }
     }
     fclose( input_file ); // closes input file
