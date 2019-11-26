@@ -1,10 +1,12 @@
 #include <ctap.h>
 #include <stdio.h>
 #include <string.h>
-#include "code_generator.c"
+#include "./headers/code_generator.c"
 
 #define BUFFER_SIZE 100
 
+//Requirement D.1 Identify Operators
+//Requirement D.2 Generate Integer or floating point load instruction
 TESTS{
 
   //Requirement D.1 Identify Operators
