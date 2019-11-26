@@ -1,16 +1,14 @@
-#include <ctap.h>
-#include <stdio.h>
-#include <string.h>
-#include "./headers/code_generator.h"
-
-#define BUFFER_SIZE 100
-
 /*
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
  * Test cases for the code_generator
  * Tests requirments A.1 - A.4 and D.1 & D.2
  */
 
-
+#include <ctap.h>
+#include <stdio.h>
+#include <string.h>
+#include "./headers/code_generator.h"
+#define BUFFER_SIZE 100
 
 
 TESTS{

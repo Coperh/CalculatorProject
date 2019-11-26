@@ -4,15 +4,10 @@
 #define BUFFER_SIZE 100
 
 /*
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
  * Test cases for the tokenizer
  * Tests requirments A.2 - A.4 and B.1 - B.4
  * Tokenizer does not input from a file and therefore does not require A.1
- * 
- * 
- * 
- * 
- * 
- * 
  */
 
 

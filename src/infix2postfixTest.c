@@ -3,8 +3,12 @@
 #include <ctap.h>
 #include "./headers/infix2postfix.h"
 
-//requirement C.1: Produce correct order of operations
-//requirement C.2: Handle parentheses
+/*
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
+ * requirement C.1: Produce correct order of operations
+ * requirement C.2: Handle parentheses
+ */
+
 TESTS{
     ok(1 == 1, "test");
     

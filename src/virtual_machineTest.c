@@ -5,6 +5,7 @@
 
 #define BUFFER_SIZE 100
 /*
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
  * Test cases for the virtual_machine
  * Tests Requirements A.1 - A.4 and E.1-E.5
  * Virtual machine does not provide an output, therefore no A.2

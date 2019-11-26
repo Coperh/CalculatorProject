@@ -1,16 +1,15 @@
-#include "./headers/tokenizer.h"
-#include "./headers/infix2postfix.h"
-#include "./headers/code_generator.h"
-#include "./headers/virtual_machine.h"
-#include <ctap.h>
-
 /*
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
  * Test all components working together
  * Verifies Requirement A.5: Adhere to predefined interfaces
  * Verifies Requirement C.1: Producer correct order or operations
  */
 
-
+#include "./headers/tokenizer.h"
+#include "./headers/infix2postfix.h"
+#include "./headers/code_generator.h"
+#include "./headers/virtual_machine.h"
+#include <ctap.h>
 
 TESTS{
     char buffer[100];
