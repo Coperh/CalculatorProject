@@ -25,3 +25,4 @@ TESTS{
   for(int i = 0; i < sizeof(floatTest); i++){
     ok(floatTest[i],"The float '%s' outputs the instruction 'LOADFLT %s'", floatTest[i], floatTest[i]);
   }
+}
