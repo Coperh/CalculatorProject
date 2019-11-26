@@ -76,7 +76,7 @@ int code_generator( int argc, char** argv ){
 													break;
 												}
                         if(NumberDetector(last_token)){
-                            fprintf(output_file, "LOADFLT %s\n", last_token);
+                            fprintf(output_file, "LOADFLOAT %s\n", last_token);
                         }
                         else
 			                fprintf(output_file, "LOADINT %s\n", last_token);
