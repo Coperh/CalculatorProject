@@ -10,7 +10,7 @@ TESTS{
 	char buffer[100];
 	FILE *fp;
 	FILE *outfp;
-	char *input[] = {"1 + 3", "10 + 11 + 12","2 * ( 10 + 1.25 )""};
+	char *input[] = {"1 + 3", "10 + 11 + 12","2 * ( 10 + 1.25 )"};
 	char *output[] = {"1 3 + ", "10 11 + 12 + ", "2 10 1.25 + * "};
 	fp = fopen("Tokens.txt", "w");
 
