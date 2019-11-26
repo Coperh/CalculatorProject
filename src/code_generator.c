@@ -28,18 +28,6 @@ bool NumberDetector(char *number) {
   return false;
 }
 
-bool OperatorValidator(char character) {
-  // Check if character is in the list of valid characters
-  for (int i = 0; i < sizeof(valid); i++) {
-    // if strings are the same (returns 0)
-    if (character == valid[i]) {
-      return true;
-    }
-  }
-  // if character not in valid list
-  return false;
-}
-
 int code_generator( int argc, char** argv ){
 
     const char *delimiter_characters = " ";
