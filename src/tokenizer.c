@@ -62,7 +62,7 @@ bool CharacterValidator(char character) {
 /*
   Scans input for indivual token numbers and characters
   input: the input that will be tokenized
-*/
+*/vm
 bool Scanner(char input[100]) {
     
     if(input[0] == '\n' || input[0] == '\0'){

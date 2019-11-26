@@ -1,3 +1,12 @@
+/*
+ * Code Generator
+ * Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
+ * 
+ * Converts postfix into instructions that can be executed
+ * by the virtual machine
+ */
+
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -6,15 +15,20 @@
 
 #define BUFFER_SIZE 100
 
-//Checks for float
-//This part from tokenizer.c
+/*
+ * Dectects if a number is a float, int or invalid
+ * 
+ * number: the number being tested
+ */
 int NumberDetector(char *number) {
     unsigned char decimalCount = 0;
     int i = 0;
-
-  while (number[i] != '\0') {
-    if (number[i] == '.') //if decimal count
+    //while there is another character
+    while (number[i] != '\0') {
+    // if decimal, count    
+    if (number[i] == '.') 
       decimalCount++;
+    // if the character is not a digit
     else if( !isdigit(number[i]))
         return -1;
     i++;
