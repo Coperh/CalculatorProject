@@ -38,7 +38,7 @@ char pop() //returns the token at the top of the stack
         return stack[top--];
 }
 /*
-Determines the precedence of an operator
+takes in an operator and returns an int value that represents it's precedence
 */
 int precedence(char x)
 {
