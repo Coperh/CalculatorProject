@@ -1,3 +1,8 @@
+#include <ctap.h>
+#include "./headers/tokenizer.h"
+
+#define BUFFER_SIZE 100
+
 /*
  * Test cases for the tokenizer
  * Tests requirments A.2 - A.4 and B.1 - B.4
@@ -10,10 +15,6 @@
  * 
  */
 
-#include <ctap.h>
-#include "./headers/tokenizer.h"
-
-#define BUFFER_SIZE 100
 
 TESTS{
     
@@ -42,7 +43,7 @@ TESTS{
     char *validFloats[] = {"1.23","3.0","123.456",".75"};
     for (int i = 0; i < sizeof(validFloats)/sizeof(validFloats[0]);i++){
         ok(NumberValidator(validFloats[i]), "<%s> is a valid float", validFloats[i]);
-    }
+    } 
     // invalid float
     char *invalidFloats[] = {"1.2.3","3.0.","123..456",".75.","."};
     for (int i = 0; i < sizeof(invalidFloats)/sizeof(invalidFloats[0]);i++){
