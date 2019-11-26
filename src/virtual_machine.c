@@ -10,6 +10,14 @@ int dtop = -1;
 char flag = 0;
 char answer[100];
 
+
+void get_answer(char* strOut, unsigned int strSize){
+    strncpy(strOut, answer, strSize);
+    
+}
+
+
+
 void dpush(double x)
 {
 	dstack[++dtop] = x;

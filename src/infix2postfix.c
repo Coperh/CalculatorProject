@@ -21,6 +21,7 @@ precedence, order of operation: 1: brackets 2: exponents 3: * and / 4: + and -
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 char stack[20];
 int top = -1;
 void push(char x) //push a token to the stack

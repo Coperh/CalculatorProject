@@ -10,4 +10,6 @@ int stack_execute(int command);
 int stack_add(double number);
 
 int stack_validator();
+
+void get_answer(char* strOut, unsigned int strSize);
 #endif // VIRTUAL_MACHINE_h

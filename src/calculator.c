@@ -10,8 +10,9 @@ int main(){
   printf("Running Calculator\n");
 
   if(tokenizer() < 0){
-      printf("boop");
+      printf("Invalid Sum\n");
       return -1;}
+
   infix2postfix();
   code_generator();
   virtual_machine();
