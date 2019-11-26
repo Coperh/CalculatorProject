@@ -1,5 +1,7 @@
 
 /*
+Infix to Postfix
+Authors: Conor Holden, Jack McCabe, William Yang, Xi Chen
 1. Scan the infix expression from left to right.
 2. If the scanned character is an operand, output it.
 3. Else,
