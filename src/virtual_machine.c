@@ -60,6 +60,9 @@ int stack_execute(int command) {
 		break;
 	// divide
 	case 3:
+        // if dividing by 0
+        if(num1 == 0)
+            return -1;
 		dpush(num2 / num1);
 		break;
 	}
@@ -98,8 +101,9 @@ int stack_validator(){
 
 int interpreter() {
 	// open file
-
-		//int instr = ...
+    
+    // clear stack
+    dtop = -1;
 	const char* delimiter_characters = " ";
 	const char* filename = "Instructions.txt";
 
@@ -112,6 +116,7 @@ int interpreter() {
 	char* token;
 	if (input_file == NULL){
 		printf("No input file.");
+        return -1;
 	}
 	else {
 

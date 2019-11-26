@@ -22,7 +22,9 @@ precedence, order of operation: 1: brackets 2: exponents 3: * and / 4: + and -
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-char stack[20];
+
+#define BUFFER_SIZE 100
+char stack[100];
 int top = -1;
 void push(char x) //push a token to the stack
 {
@@ -54,13 +56,13 @@ writing the output to another txt file.
 */
 int infix2postfix()
 {
-    char exp[20];
+    char exp[BUFFER_SIZE];
     char *e, x;
 	FILE *fPointer; //file pointer for input txt file
 	FILE *fWrite; //file pointer for output txt file
 	fPointer = fopen("Tokens.txt", "r"); //pointer to read from input file
 	fWrite = fopen("Postfix.txt", "w"); //pointer to write to output file
-	while (fgets(exp, 20, fPointer) != NULL) //scan line token by token until null pointer
+	while (fgets(exp, BUFFER_SIZE, fPointer) != NULL) //scan line token by token until null pointer
 		e = exp;
 		while(*e != '\0')
 		{	
