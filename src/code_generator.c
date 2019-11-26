@@ -81,7 +81,6 @@ int code_generator( int argc, char** argv ){
                         else
 			                fprintf(output_file, "LOADINT %s\n", last_token);
                 }
-                printf("%s\n", last_token );
                 last_token = strtok(NULL, delimiter_characters );
             }
             if(ferror(input_file) ){

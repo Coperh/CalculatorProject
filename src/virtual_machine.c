@@ -8,6 +8,7 @@
 double dstack[STACK_SIZE];
 int dtop = -1;
 char flag = 0;
+char answer[100];
 
 void dpush(double x)
 {
@@ -65,7 +66,29 @@ int stack_add(double number) {
 	dpush(number);
 	return 0;
 }
-int virtual_machine() {
+
+int stack_validator(){
+    
+    if(dtop > 0){
+        printf("Too many items on stack\n");
+        return -1;
+    }
+    else if(dtop < 0){
+        printf("Stack is empty\n");
+        return -1;
+    }
+    float ans = dpop();
+    if( ans - (int)ans == 0)
+        sprintf(answer, "%d",(int)ans);
+    else
+        sprintf(answer, "%f", ans);
+    return 0;
+    
+    
+}
+
+
+int interpreter() {
 	// open file
 
 		//int instr = ...
@@ -92,19 +115,15 @@ int virtual_machine() {
 			token = strtok(buffer, delimiter_characters);
 			int cm = -1;
 			if (strcmp(token, "ADD\n")==0) {
-				printf("ADD\n");
 				cm = 0;
 			}
 			else if (strcmp(token, "SUB\n") == 0) {
-				printf("SUB\n");
 				cm = 1;
 			}
 			else if (strcmp(token, "MUL\n") == 0) {
-				printf("MUL\n");
 				cm = 2;
 			}
 			else if (strcmp(token, "DIV\n") == 0) {
-				printf("DIV\n");
 				cm = 3;
 			}
 
@@ -117,12 +136,10 @@ int virtual_machine() {
 			}
 			else if (strcmp(token, "LOADINT") == 0) {
 				int number = atoi(strtok(NULL, delimiter_characters));
-				printf("LOADINT %d\n", number);
 				stack_add((double)number);
 			}
 			else if (strcmp(token, "LOADFLOAT") == 0) {
 				double number = strtod(strtok(NULL, delimiter_characters), NULL);
-				printf("LOADFLOAT %f\n", number);
 				stack_add(number);
 			}
 			else {
@@ -133,11 +150,19 @@ int virtual_machine() {
 		}
 	}
 	fclose(input_file);
-	if(dtop > 0){
-		printf("Too many items on stack.\n");
-		return(-1);
-	}
-	printf("ans: %f", dstack[0]);
-
 	return 0;
 }
+
+
+int virtual_machine(){
+    if (interpreter() != 0)
+        return -1;
+    
+    if(stack_validator() == 0)
+        printf("Answer: %s\n", answer);
+    else 
+        return -1;
+    return 0;
+    
+}
+
